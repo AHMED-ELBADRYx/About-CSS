@@ -931,7 +931,7 @@ text-decoration-color: red;
 text-decoration-style: wavy;
 ```
 
-يمكن اختصار الثالثة:
+يمكن اختصار الثلاثة:
 
 ```css
 text-decoration: solid black underline
