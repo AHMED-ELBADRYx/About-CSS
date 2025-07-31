@@ -21,31 +21,24 @@ CSS هي اختصار لـ Cascading Style Sheets، وهي اللغة المسؤ
     - [الخطوط](#الخطوط)
   - [أنواع المحددات (Selectors)](#أنواع-المحددات-selectors)
     - [المحددات البسيطة](#المحددات-البسيطة)
+      - [ملاحظات](#ملاحظات)
     - [محددات أكثر تعقيدًا](#محددات-أكثر-تعقيدًا)
     - [محددات السمات](#محددات-السمات)
   - [الوحدات المستخدمة في CSS](#الوحدات-المستخدمة-في-css)
     - [استخدام الأمثلة](#استخدام-الأمثلة)
     - [مقدار الوحدة](#مقدار-الوحدة)
-    - [ملاحظات](#ملاحظات)
+    - [ملاحظـات](#ملاحظـات)
     - [مشكلة النسبة المئوية](#مشكلة-النسبة-المئوية)
   - [التعامل مع الألوان](#التعامل-مع-الألوان)
   - [الخلفيات](#الخلفيات)
+    - [ملاحظـات](#ملاحظـات-1)
+    - [ملاحظــات](#ملاحظــات)
     - [خصائص الخلفية](#خصائص-الخلفية)
+      - [الفرق بين background-clip و background-origin](#الفرق-بين-background-clip-و-background-origin)
     - [اختصار الخلفية](#اختصار-الخلفية)
+      - [ملاحظات مهمة](#ملاحظات-مهمة)
   - [أمثلة عملية](#أمثلة-عملية)
   - [الخطوط والنصوص](#الخطوط-والنصوص)
-    - [1. **`font-weight: normal`**](#1-font-weight-normal)
-    - [2. **`font-weight: initial`**](#2-font-weight-initial)
-    - [الفرق العملي](#الفرق-العملي)
-      - [مثال توضيحي](#مثال-توضيحي)
-    - [متى نستخدم كل منهما؟](#متى-نستخدم-كل-منهما)
-    - [1. **لو كان العنصر له قيمة افتراضية مختلفة عن `normal`**](#1-لو-كان-العنصر-له-قيمة-افتراضية-مختلفة-عن-normal)
-      - [مثال](#مثال)
-    - [2. **لو كان هناك توريث (Inheritance) من العنصر الأب**](#2-لو-كان-هناك-توريث-inheritance-من-العنصر-الأب)
-      - [مثـال](#مثـال)
-    - [الخلاصة](#الخلاصة)
-    - [متى تستخدم كل منهما؟](#متى-تستخدم-كل-منهما)
-      - [هل هناك فرق في العناصر العادية مثل `<p>`؟](#هل-هناك-فرق-في-العناصر-العادية-مثل-p)
     - [اختصار الخصائص الخمسة لسطر واحد](#اختصار-الخصائص-الخمسة-لسطر-واحد)
   - [الصندوق (Box Model)](#الصندوق-box-model)
     - [padding](#padding)
@@ -56,25 +49,34 @@ CSS هي اختصار لـ Cascading Style Sheets، وهي اللغة المسؤ
     - [التحكم في النوع](#التحكم-في-النوع)
     - [visibility](#visibility)
   - [خاصية overflow](#خاصية-overflow)
-  - [الموقع والإزاحة](#الموقع-والإزاحة)
-  - [Position](#position)
+  - [z-index](#z-index)
   - [Float](#float)
+    - [ملاحظـــات](#ملاحظـــات)
+    - [حل مشكلة انهيار العنصر الأب دون تعديل HTML بإضافة محتوى وهمي](#حل-مشكلة-انهيار-العنصر-الأب-دون-تعديل-html-بإضافة-محتوى-وهمي)
   - [القوائم (List Styles)](#القوائم-list-styles)
     - [موقع النقطة](#موقع-النقطة)
     - [صورة بدلاً من النقاط](#صورة-بدلاً-من-النقاط)
     - [اختصار](#اختصار)
+  - [Table style](#table-style)
   - [التأثيرات البصرية (Hover, Focus, Checked)](#التأثيرات-البصرية-hover-focus-checked)
     - [Hover](#hover)
+    - [Active](#active)
+    - [Empty](#empty)
     - [Visited](#visited)
+    - [Link](#link)
     - [Focus](#focus)
+    - [Disabled](#disabled)
+    - [حالات `<input>` المدعومة في CSS](#حالات-input-المدعومة-في-css)
+    - [ملاحظات مهمـة](#ملاحظات-مهمـة)
+    - [المراجع المفيدة](#المراجع-المفيدة)
     - [Checked](#checked)
     - [Opacity](#opacity)
   - [الأمثلة العملية](#الأمثلة-العملية)
+    - [الفرق بين النقطتين `:` والأقواس المربعة `[]`](#الفرق-بين-النقطتين--والأقواس-المربعة-)
   - [العناصر الزائفة (Pseudo-elements)](#العناصر-الزائفة-pseudo-elements)
     - [::first-letter](#first-letter)
     - [::first-line](#first-line)
     - [::selection](#selection)
-    - [::before و::after](#before-وafter)
   - [تخطيط الصفحة (Flexbox, Grid)](#تخطيط-الصفحة-flexbox-grid)
     - [Flexbox](#flexbox)
     - [Grid](#grid)
@@ -82,6 +84,11 @@ CSS هي اختصار لـ Cascading Style Sheets، وهي اللغة المسؤ
   - [مفاهيم متقدمة](#مفاهيم-متقدمة)
     - [التغليف (Wrapping)](#التغليف-wrapping)
       - [التحكم في التغليف](#التحكم-في-التغليف)
+    - [التحويلات (Transforms)](#التحويلات-transforms)
+      - [الفرق بين `position` (مع `top` / `bottom` / `left` / `right`) وبين `transform: translate()`](#الفرق-بين-position-مع-top--bottom--left--right-وبين-transform-translate)
+    - [التحريكات (Translates)](#التحريكات-translates)
+    - [الأحجام (Scales)](#الأحجام-scales)
+    - [الدوران (Rotate)](#الدوران-rotate)
     - [الانتقالات (Transitions)](#الانتقالات-transitions)
     - [التحريكات (Animations)](#التحريكات-animations)
     - [الوراثة (Inheritance)](#الوراثة-inheritance)
@@ -487,7 +494,13 @@ p { color: blue; }
 - بالكلاس:
 
 ```html
-<p class="highlight">...</p>
+<div class="highlight">...</div>
+```
+
+يختصر إلى:
+
+```html
+.highlight
 ```
 
 ```css
@@ -505,7 +518,7 @@ p { color: blue; }
 يختصر إلى:
 
 ```html
-<p#"unique">...</p>
+#unique
 ```
 
 ```css
@@ -513,6 +526,44 @@ p { color: blue; }
 ```
 
 استدعاء الـ ID بالرمز `#`.
+
+#### ملاحظات
+
+لا يصلح أن تضع أرقاما ببداية الكلاس أو المعرف
+
+يمكن كتابة أكثر من قيمة واستدعاء كل قيمة على حدة مثال:
+
+```html
+<div class="green">
+    <h1 class="red float"></h1>
+    <h1 class="blue float"></h1>
+    <h1 class="yellow float"></h1>
+</div>
+```
+
+```css
+.green {
+    background: green;
+}
+.red {
+    height: 50px;
+    width: 100px;
+    background: red;
+}
+.blue {
+    height: 50px;
+    width: 100px;
+    background: blue;
+}
+.yellow {
+    height: 50px;
+    width: 100px;
+    background: yellow;
+}
+.float {
+    float: right;
+}
+```
 
 ---
 
@@ -648,11 +699,13 @@ div > p > strong { color: purple; }
 
 - تحديد أخ شقيق لاحق:
 
+تستخدم اعتمادا على تأثير يطرق على الأخ السابق
+
 ```css
 h2 + p { margin-top: 0; }
 ```
 
-ينطبق على أول p بعد h2 مباشرة.
+ينطبق على أول p بعد h2 مباشرة (ليس بينهم وسم إخر) في نفس النطاق.
 
 - تحديد كل الأشقاء اللاحقين:
 
@@ -660,7 +713,7 @@ h2 + p { margin-top: 0; }
 h2 ~ p { color: gray; }
 ```
 
-ينطبق على كل p بعد h2 في نفس المستوى.
+ينطبق على كل p بعد h2 في نفس المستوى حنى لو يفصل بينهم عناصر أخرى بشرط أن تكون بنفس النطاق.
 
 ---
 
@@ -682,6 +735,33 @@ input[type="text"] {
 
 ⚠️ يفضل عدم استهداف value لأنها متغيرة.
 
+طرق التحديد:
+
+- [attr]
+  - `[type] { background: green; }`
+- element[attr]
+  - `input[type] { background: green; }`
+- [attr="value"]
+  - `[type="text"] { background: green; }`
+- element[attr="value]
+  - `input[type="text"] { background: green; }`
+- [attr ^="value"] start with
+  - تطبيق التنسيق على ما يبدأ بما هو محدد
+  - `[href ^="www"] { color: red; }`
+- [attr $="value"] end with
+  - تطبيق التنسيق على ما ينتهي بما هو محدد
+  - `[href $="com"] { color: red; }`
+- [attr *="value"] containing a spacefied value
+  - تطبيق التنسيق على ما يحتوي بما هو محدد
+  - `[href *="/"] { color: red; }`
+- [attr ~="value"] containing a spacefied word
+  - تطبيق التنسيق على ما يحتوي على كلمة محددة
+  - `[class ~="red"] { border: 2px solid red; }`
+- [attr ="value" i] case sensitive
+  - إلغاء حالة الحروف (مع كل المحددات)
+  - `[class ~="RED" i] { border: 2px solid red; }`
+  - `[type="TEXT" i] { background: green; }`
+
 ---
 
 ## الوحدات المستخدمة في CSS
@@ -690,11 +770,12 @@ input[type="text"] {
 
 - **px**: بكسل – وحدة ثابتة.
 - **em**: نسبة لحجم خط الأب.
-- **rem**: نسبة لحجم الخط الجذر.
-- **%**: نسبة مئوية لحاوية العنصر.
-- **vw / vh**: نسبة من عرض أو ارتفاع الشاشة.
+- **rem**: نسبة لحجم الخط الجذر (`root`).
+- **%**: نسبة مئوية لحاوية العنصر الأب.
+- **vw / vh**: نسبة من عرض أو ارتفاع الشاشة وليس الأب.
 - **fr**: في Grid لتقسيم المساحات.
 - **auto**: يعتمد على المحتوى.
+- **calc**(): للعمليات الحسابية مثلا: (100% - 50px)
 
 ---
 
@@ -711,10 +792,11 @@ height: 50vh;
 
 ### مقدار الوحدة
 
-- Normal text = `<p>` = 16 px = 1em = 100%
+- Normal text = `<p>` = 16px = 1em = 100%
 - `<h1>` = 32px = 2em = 200%
+- `root` = 16px = 1rem
 
-### ملاحظات
+### ملاحظـات
 
 ✅ يفضل استخدام وحدات مرنة مثل em, rem, % للواجهات المتجاوبة.  
 ✅ px ثابتة لكنها دقيقة للتصميم الثابت.  
@@ -791,6 +873,59 @@ background-color: lightblue;
 background-image: url("image.jpg");
 ```
 
+لدمج ألوان الخلفية خطيا:
+
+```css
+background-image: linear-gradient(to right, red 60%, blue 40%);
+```
+
+linear-gradient: تأخذ تلاث قيم:
+
+  1. اتجاه التدرج مثل:
+     1. to bottom (الافتراضية)
+     2. to right bottom, to bottom right ...etc
+     3. 90deg, 360deg ...etc
+  2. من اللون
+  3. ألى اللون
+
+### ملاحظـات
+
+النسبة المئوية هنا هي نسبة اللون، لو اللونين لهما نفس النسبة يتوقف التدرج
+
+يمكن ضم أكثر من لون
+
+أول لون نسبته تبدأ من `0%`وآخر لون نسبته تنتهي عند `100%`
+
+يمكن تحدبد درجة الشفافية من خلال `transparent`
+
+مثال:
+
+```css
+background-image: linear-gradient(185deg, red 0% 30%, blue 50% 60%, green 70% 80%, transparent);
+```
+
+لدمج ألوان الخلفية داخليا:
+
+```css
+background-image: radial-gradient(circle, yellow, blue, red);
+```
+
+القيم:
+
+1. الأشكال:
+   1. ellipse: بيضاوي (افتراضي)
+      1. الأبعاد: قيمتين (لو متساويتين تشكل دائرة)
+   2. circle: دائري
+      1. الأبعاد: قيمة واحدة
+
+### ملاحظــات
+
+ يمكن تحديد موقع ثاني قيمة للشكل البيضاوي مثل:
+
+ ```css
+ background-image: radial-gradient(ellipse 200px 100px at top left, yellow, blue, red);
+ ```
+
 ### خصائص الخلفية
 
 - تكرار الخلفية:
@@ -801,21 +936,63 @@ background-repeat: repeat-x;
 background-repeat: repeat-y;
 ```
 
+القيم:
+
+1. `background-repeat`:
+   1. `repeat`: تكرار (افتراضيا)
+   2. `no-repeat`: بدون تكرار
+2. `background-repeat`:
+   1. `repeat-x`: تكرار أفقي
+   2. `repeat-y`: تكرار عمودي
+
 - حجم الخلفية:
 
 ```css
 background-size: cover;
+background-size: 100%;
 background-size: contain;
 background-size: 100px 200px;
 ```
+
+القيم:
+
+1. `width` `height`
+2. `cover`: تملأ كل أبعاد الخلفية على حساب كمال الصورة
+3. `contain`: تحافظ على أبعاد الصورة
 
 - موقع الخلفية:
 
 ```css
 background-position: center;
+background-position: center top;
 background-position: top left;
 background-position: 50% 50%;
+background-position: 30px 10px;
 ```
+
+
+
+
+
+
+
+
+
+
+
+التكبير من خلال (`CTRL` + `+`) يتم في الموضع الذي يحدده `background-position`
+
+
+
+
+
+
+
+
+
+
+
+
 
 - ثبات الخلفية أثناء التمرير:
 
@@ -824,13 +1001,104 @@ background-attachment: fixed;
 background-attachment: scroll;
 ```
 
+القيم:
+
+`fixed`: متنقل مع التمرير
+`scroll`: يتم تمريره (افتراضيا)
+
+- بداية الخلفية:
+
+```css
+background-origin: border-box;
+background-origin: padding-box;
+background-origin: content-box;
+```
+
+1. `border-box`: (الافتراضي)
+   1. تبدأ الخلفية من حافة الإطار (border)
+   2. الخلفية تمتد تحت الإطار إذا كان شفافًا أو متقطعًا
+2. `padding-box`:
+   1. تبدأ الخلفية من حافة الحشو الداخلي (padding)
+   2. لا تمتد الخلفية تحت الإطار
+3. `content-box`:
+   1. تبدأ الخلفية من حافة المحتوى
+   2. لا تمتد تحت الحشو الداخلي أو الإطار
+
+- نقطة اقتصاص الخلفية للعنصر:
+
+```css
+background-clip: border-box;
+background-clip: padding-box;
+background-clip: content-box;
+```
+
+القيم:
+
+1. `border-box` (القيمة الافتراضية)
+   1. الخلفية تمتد خلف الإطار (border)
+   2. إذا كان الإطار شفافًا أو متقطعًا، ستبدو الخلفية تحته
+2. `padding-box`
+   1. الخلفية تقتصر على منطقة الحشو (padding) ولا تمتد تحت الإطار
+   2. الإطار سيكون فوق الخلفية (إذا كان مرئيًا)
+3. `content-box`
+   1. الخلفية تقتصر على منطقة المحتوى فقط
+   2. لا تظهر تحت الحشو (padding) ولا تحت الإطار
+4. `text` (تجريبي، يحتاج prefix في بعض المتصفحات)
+   1. الخلفية تقتصر على نص العنصر فقط
+   2. يحتاج إلى -webkit-background-clip: text في بعض المتصفحات
+   3. يجب أن يكون لون النص شفافًا (color: transparent) لرؤية التأثير
+
+#### الفرق بين background-clip و background-origin
+
+`background-clip`: يحدد أين تنتهي الخلفية (منطقة الاقتصاص)
+
+`background-origin`: يحدد من أين تبدأ الخلفية (نقطة الأصل)
+
 ### اختصار الخلفية
 
 يمكن دمج كل الخصائص في خاصية واحدة:
 
 ```css
-background: url("image.jpg") no-repeat center / cover;
+background: red url("image.jpg") no-repeat center / cover padding-box fixed;
 ```
+
+#### ملاحظات مهمة
+
+لا يوجد قيم إجبارية يجب كتابتها
+
+إذا استخدمت `background-size` يجب أن تأتي بعد `background-position` مفصولة بشرطة مائلة (`/`)
+
+لا يوجد ترتيب إجباري، لكن هناك ترتيب موصى به:
+
+1. `background-color`
+2. `background-image`
+3. `background-repeat`
+4. `background-attachment`
+5. `background-position` / `background-size`
+
+تأتي `background-origin` بعد `background-size` لذا يمكن للمتصفح أن يفرق بين قيمتها وقيمة `background-clip`
+
+القيم غير المحددة ستحصل على قيمها الافتراضية
+
+يمكنك استخدام none لإلغاء أي خاصية
+
+القيم الافتراضية إذا لم تحددها:
+
+```css
+.element {
+  background: transparent none repeat scroll 0% 0%/auto padding-box padding-box;
+}
+```
+
+التركيبة الخاصة بها:
+
+```css
+.element {
+  background: [color] [image] [repeat] [attachment] [position] / [size] [origin] [clip];
+}
+```
+
+يمكن معاينة الألوان بسهولة في أغلب المحررات بوجود معاين تلقائي، كما تدعم بعض المتصفحات اختيار الألوان مباشرة من أدوات المطور.
 
 ---
 
@@ -859,10 +1127,6 @@ body {
   background-attachment: fixed;
 }
 ```
-
----
-
-✅ ملاحظة: يمكن معاينة الألوان بسهولة في أغلب المحررات بوجود معاين تلقائي، كما تدعم بعض المتصفحات اختيار الألوان مباشرة من أدوات المطور.
 
 ---
 
@@ -925,7 +1189,7 @@ strong {
 
 الفرق بين `font-weight: normal` و `font-weight: initial` في CSS كالتالي:
 
-### 1. **`font-weight: normal`**
+1- **`font-weight: normal`**
 
 - يعطي النص **سمكًا عاديًا** (عادةً ما يعادل `400` في القيم الرقمية).
 - يتجاهل أي سمك موروث من العنصر الأب.  
@@ -937,7 +1201,7 @@ p {
 }
  ```
 
-### 2. **`font-weight: initial`**
+2- **`font-weight: initial`**
 
 - يُعيد السمك إلى **قيمته الافتراضية الأولية** حسب المواصفات CSS (وهي `normal` في معظم العناصر مثل `<p>`، لكنها قد تكون `bold` في عناصر مثل `<th>` أو `<h1>` إلى `<h6>`).  
 - يلغي أي تأثير للوراثة (Inheritance) ويعود إلى الإعداد الافتراضي للمتصفح.  
@@ -949,13 +1213,13 @@ p {
 }
 ```
 
-### الفرق العملي
+الفرق العملي:
 
 - إذا كان العنصر الأب لديه `font-weight: bold`، فإن:  
   - `normal` سيتجاهل التوريث ويجعل النص عاديًا.  
   - `initial` سيعيده إلى القيمة الافتراضية (التي قد تكون `normal` أو `bold` حسب العنصر).  
 
-#### مثال توضيحي
+مثال توضيحي:
 
 ```html
 <style>
@@ -979,7 +1243,7 @@ p {
 
 ---
 
-### متى نستخدم كل منهما؟
+متى نستخدم كل منهما؟
 
 - استخدم `normal` عندما تريد **إجبار النص على أن يكون عاديًا** بغض النظر عن التوريث أو الإعدادات الأخرى.  
 - استخدم `initial` عندما تريد **إعادة السمك إلى القيمة الافتراضية الأصلية** للعنصر (مثلاً لإلغاء تأثير التوريث).  
@@ -992,14 +1256,14 @@ p {
 
 ---
 
-### 1. **لو كان العنصر له قيمة افتراضية مختلفة عن `normal`**
+1- **لو كان العنصر له قيمة افتراضية مختلفة عن `normal`**
 
 - بعض العناصر مثل `<th>` أو العناوين (`<h1>` إلى `<h6>`) لها قيمة `font-weight` الافتراضية `bold` (وليست `normal`).  
 - هنا يظهر الفرق:
   - `normal` → **يُجبر** النص على أن يكون عاديًا (مهما كانت القيمة الافتراضية).  
   - `initial` → **يعود** إلى القيمة الافتراضية الأصلية للعنصر (مثلاً `bold` للعناوين).  
 
-#### مثال
+مثال:
 
 ```html
 <h1 style="font-weight: normal">عنوان بـ normal (يصبح عاديًا)</h1>
@@ -1012,14 +1276,14 @@ p {
 
 ---
 
-### 2. **لو كان هناك توريث (Inheritance) من العنصر الأب**
+2- **لو كان هناك توريث (Inheritance) من العنصر الأب**
 
 - لو كان العنصر الأب لديه `font-weight: bold`، فكل العناصر الفرعية ترث هذا السمك.  
 - هنا:  
   - `normal` → يتجاهل التوريث ويجعل النص عاديًا.  
   - `initial` → يتجاهل التوريث **ويُعيد القيمة الافتراضية للعنصر نفسه** (ليست بالضرورة `normal`).  
 
-#### مثـال
+مثـال:
 
 ```html
 <div style="font-weight: bold;">
@@ -1031,7 +1295,7 @@ p {
 
 ---
 
-### الخلاصة
+الخلاصة:
 
 | الحالة               | `font-weight: normal`               | `font-weight: initial`              |
 |----------------------|-------------------------------------|--------------------------------------|
@@ -1041,12 +1305,12 @@ p {
 
 ---
 
-### متى تستخدم كل منهما؟
+متى تستخدم كل منهما؟
 
 - استخدم `normal` عندما تريد **إجبار** النص على أن يكون عاديًا بغض النظر عن أي شيء (توريث أو قيم افتراضية).  
 - استخدم `initial` عندما تريد **إعادة الضبط** للقيمة الأصلية للعنصر (مثلاً لإلغاء توريث السمك من الأب).  
 
-#### هل هناك فرق في العناصر العادية مثل `<p>`؟
+هل هناك فرق في العناصر العادية مثل `<p>`؟
 
 - **لا**، لأن قيمتها الافتراضية أصلًا `normal`، لذا كلتا القاعدتين ستعطيان نفس النتيجة.  
 - الفرق يظهر فقط في العناصر التي لها قيمة افتراضية مختلفة (مثل العناوين أو `<th>`).  
@@ -1355,13 +1619,35 @@ box-sizing: border-box;
 
 عناصر HTML تنقسم إلى نوعين رئيسيين:
 
-- **Block**: تأخذ عرض السطر كاملًا (الأب) وتبدأ في سطر جديد.
+- **Block**: تأخذ عرض السطر كاملًا (100% من عرض الأب) وتبدأ في سطر جديد حتى لو كان العنصر الذي يسبقه `inline`.
   - أمثلة: div, p, h1-h6, section
-  - يمكن تحديد عرض وطول، خلفية تغطي كل السطر.
+  - يمكن تحديد عرض وطول، خلفية تغطي كل السطر وينشيء سطر جديد حتى لو العرض ليس 100% من الأب.
 
-- **Inline**: تأخذ عرض محتواه فقط وتبقى في نفس السطر مع العناصر المجاورة.
+- **Inline**: تأخذ عرض محتواه فقط وتبقى في نفس السطر مع العناصر المجاورة (إلا لو كان عرض المحتوى أكبر من الأب ينتقل لسطر جديد).
   - أمثلة: span, a, strong, em
-  - لا يمكن تحديد عرض وطول (بساتثناء `img`)، الخلفية تغطي المحتوى فقط.
+  - لا يمكن تحديد عرض وطول، الخلفية تغطي المحتوى فقط.
+  - الأبعاد الممكن تحديدها:
+    - `border`
+    - `padding`:
+      - يأخذ مساحة للعرض فيزيح العناصر المجاورة
+      - لا يأخذ مساحة للطول فلا يزيح عناصر الأسطر المحيطة
+    - `margin`:
+      - يأخذ مساحة للعرض فيزيح العناصر المجاورة
+      - لا يمكن تحديد قيمة الطول (`top`, `bottom`)
+  - عناصر `inline` تنقسم لقسمين:
+    - عناصر نصية لا يمكن تحديد أبعادها
+    - عناصر مرئية تعامل على أنها `inline-block` مثل:
+      - `img`
+      - `iframe`
+      - `canvas`
+      - `video`: له أبعاد افتراضية
+      - `audio`: لو كان له واجهة مرئية
+      - `object`
+      - عناصر متصفحيا `inline-block`
+        - `input`
+        - `textarea`
+        - `select`
+        - `button`
 
 - يمكن معرفة نوع العنصر من خلال `background-color` أو `Inspect`
 
@@ -1387,15 +1673,27 @@ img {
 
 - **inline-block**: يجمع خصائص inline وblock معًا (يسمح بتحديد العرض والطول ويبقى في السطر).
 
-- رغم إمكانية التحكم في أبعاد الصور ألا أن `inline-block` يسمح بالتحكم بخصائص `margin`, `padding` أيضا
+- **contents**: يزيل صندوق العنصر (box) ويجعل أطفاله جزءًا من تدفق الأب. مفيد في التنسيق المتقدم (مثل `grid`/`flex`).
 
-- **none**: يخفي العنصر تمامًا ويزيله من التخطيط.
+- **none**: يخفي العنصر تمامًا ويزيله من التخطيط ويهمل مكانه.
 
 ```css
 .hidden {
   display: none;
 }
 ```
+
+- ماذا تقبل `inline-block` من خواص العناصر `block`؟
+  - تقبل:
+    - الأبعاد: `width`, `height`
+    - المسافات: `padding`, `margin`, `border`
+    - تنسيقات الخلفية والظلّ والتدرجات مثل `background`, `box-shadow`, `outline`
+    - `vertical-align` (ميزة إضافية عن block!)
+    - `text-align` يعمل داخليًا
+  - لا تقبل:
+    - الامتداد التلقائي لكامل عرض الأب (`width: auto` في `inline-block` لا يعني 100%)
+    - كسر السطر تلقائيًا (unless تستخدم `br` أو `flex-wrap`)
+    - لا تُوسَّط تلقائيًا بـ `margin: auto` إلا إن وضعتها داخل `block` محدد العرض
 
 ---
 
@@ -1405,13 +1703,19 @@ img {
 
 ```css
 .visible {
-  visibility: visible;
+  visibility: visible; /* Default */
 }
 
 .invisible {
   visibility: hidden;
 }
 ```
+
+- `visibility: visible`: ظهور (افتراضي)
+- `visibility: hidden`: اخفاء
+- `opacity: 0`: يخفي العنصر مع بقاءه مؤثرًا في التخطيط (يحتفظ بالمساحة ويبقى قابلًا للنقر إذا لم تُعطِ `pointer-events: none`)، يمكن مراجعة التنسيق من [هنا](#opacity)
+  - الفرق الرئيسي هو أن `opacity` يمكن استخدامه لتحويلات الحركة (animations) بسلاسة، بينما `visibility` لا يدعم التدرج.
+- `display: none`: حذف
 
 ---
 
@@ -1430,18 +1734,25 @@ overflow: auto;
 - **scroll**: دائما يظهر شريط التمرير.
 - **auto**: يظهر شريط التمرير عند الحاجة.
 
+يمكن تحديد محور معين:
+
+```css
+overflow-x: scroll;
+overflow-y: hidden;
 ---
 
 ## الموقع والإزاحة
 
 ---
 
-## Position  
+## Position
 
 خاصية position تتحكم في مكان العنصر في الصفحة:
 
 - **static** (افتراضي): موقع طبيعي في التدفق.
-- **relative**: يسمح بتحريك العنصر من مكانه الأصلي.
+- **relative**:
+  - يسمح بتحريك العنصر من مكانه الأصلي
+  - يحافظ على حجز مكانه
 
 ```css
 .relative {
@@ -1451,7 +1762,10 @@ overflow: auto;
 }
 ```
 
-- **absolute**: يخرج من التدفق العادي ويتموضع نسبة لأقرب أب
+- **absolute**:
+  - يخرج من التدفق العادي ويتموضع نسبة لأقرب أب به خاصية `position` إلا لو القيمة `static`
+  - يهمل حجز مكانه
+  - يخرج من أبعاد الأب ويحدد المحتوى أبعاده (ما لم يحدد له أبعاد)
 
 يملك position غير static.
 
@@ -1481,7 +1795,41 @@ overflow: auto;
 }
 ```
 
-يبقى في مكانه عند التمرير حتى حد معين.
+يبقى في مكانه عند التمرير حتى حد معين. (ينتهي عند أقصى حد للأب)
+
+---
+
+## z-index
+
+تتحكم بمكان الطبقات (القيمة الأعلى تأخذ الطبقة الأعلى)
+
+```css
+.test1 {
+  z-index: 1
+}
+```
+
+```css
+.test2 {
+  z-index: 2
+}
+```
+
+```css
+.test3 {
+  z-index: 3
+}
+```
+
+```css
+.test4 {
+  z-index: -1
+}
+```
+
+أعلى طبقة هي `.test3`
+
+أسفل طبقة هي `.test4` (أسفل من الأب: لن تظهر لو للأب لون خلفية)
 
 ---
 
@@ -1499,24 +1847,93 @@ overflow: auto;
 }
 ```
 
+- القيمة الافتراضية: `none`
 - يسمح بوضع عناصر بجانب بعضها.
-- يخرجها من التدفق العادي مما قد يجعل الخلفية أو الحدود لا تحتويها.
+- يخرجها من التدفق العادي مما قد يجعل الخلفية أو الحدود لا تحتويها (يعني لو العنصر داخل حاوية مثل `div` يقوم بالخروج منها) مثال:
+
+```html
+<div class="green">
+    <div class="red float"></div>
+    <div class="blue float"></div>
+    <div class="yellow float"></div>
+</div>
+```
+
+```css
+.green {
+    background: green;
+}
+.red {
+    height: 50px;
+    width: 100px;
+    background: red;
+}
+.blue {
+    height: 50px;
+    width: 100px;
+    background: blue;
+}
+.yellow {
+    height: 50px;
+    width: 100px;
+    background: yellow;
+}
+.float {
+    float: right;
+}
+```
 
 لحل مشكلة "الخروج" من الحاوية:
 
+```html
+<div class="green">
+  ...
+</div>
+<div class="clearfix"></div>
+```
+
 ```css
-.clearfix::after {
-  content: "";
-  display: table;
+.clearfix{
   clear: both;
 }
 ```
 
+- `clear`:
+  - `right`: -> `float: right;`
+  - `left`: -> `float: left;`
+  - `both`: الاثنين
+
 ---
 
-✅ ملاحظة:
+### ملاحظـــات
+
+- هذه الطريقة لا تحل مشكلة انهيار العنصر الأب:
+  - يعمل فقط على منع العناصر الطافية من التأثير على العناصر التالية
+  - لا يجبر العنصر الأب على احتواء العناصر الطافية داخله
+- يحتاج إلى عنصر إضافي في HTML
 
 - بعد استخدام float، يجب عادةً "تصفية" التدفق بـ clear.
+
+### حل مشكلة انهيار العنصر الأب دون تعديل HTML بإضافة محتوى وهمي
+
+```html
+<div class="green clearfix">
+  ...
+</div>
+```
+
+```css
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+```
+
+- `::after`: هو عنصر زائف (pseudo-element) يُنشئ عنصرًا افتراضيًا بعد محتوى العنصر المحدد.
+- `content`: "": ينشئ محتوى فارغًا لهذا العنصر الافتراضي.
+- `display: table (أو block)`: يجعل العنصر الافتراضي يأخذ مساحة كاملة.
+- `clear: both`: يمنع هذا العنصر من أن يتأثر بالعناصر الطافية من أي جهة (يمين أو يسار).
 
 ---
 
@@ -1563,7 +1980,7 @@ ul {
 }
 ```
 
-يفضل أن تكون الصورة صغيرة الحجم.
+يفضل أن تكون صغيرة الحجم.
 
 ---
 
@@ -1575,9 +1992,172 @@ ul {
 }
 ```
 
-يمكن دمج النوع والموقع.
+يمكن دمج النوع والموقع والصورة.
 
 ---
+
+## Table style
+
+يمكن عمل تنسيقات للجداول مثلا:
+
+```html
+<table>
+  <caption>جدول توضيحي</caption>
+  <thead>
+      <tr>
+          <th>الاسم</th>
+          <th>العمر</th>
+          <th>المدينة</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>أحمد</td>
+          <td>25</td>
+          <td>القاهرة</td>
+      </tr>
+      <tr>
+          <td>محمد</td>
+          <td>30</td>
+          <td>الرياض</td>
+      </tr>
+      <tr>
+          <td>فاطمة</td>
+          <td>22</td>
+          <td>دبي</td>
+      </tr>
+  </tbody>
+</table>
+```
+
+```css
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+    text-transform: : uppercase;
+    font-size: 14px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+caption {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+```
+
+تنسيق الجدول الرئيسي (table):
+
+- `background-color`: لون خلفية الجدول
+- `border`: حد الجدول
+- `width`: عرض الجدول (100% لعرض كامل)
+- `border-spacing`: المسافة بين الخلايا
+- `border-collapse`: (`collapse` | `separate`) - يتحكم في دمج حدود الخلايا
+  - `collapse`: يدمج الحدود بين الخلايا
+  - `separate`: يفصل الحدود (الافتراضي)
+
+تنسيق عناوين الجدول (th):
+
+- `background-color`: لون خلفية العناوين
+- `color`: لون النص
+- `height`: ارتفاع الخلية
+- `font-weight`: سمك الخط (غالبًا bold للعناوين)
+- `text-align`: محاذاة النص (left, center, right)
+- `padding`: المساحة الداخلية حول النص
+
+تنسيق خلايا البيانات (td):
+
+- `text-align`: محاذاة النص أفقياً
+- `height`: ارتفاع الخلية
+- `vertical-align`: محاذاة النص عمودياً
+  - `top`: أعلى الخلية
+  - `middle`: منتصف الخلية (الافتراضي)
+  - `bottom`: أسفل الخلية
+
+تنسيق الصفوف (tr):
+
+```css
+tr {
+  background-color: #f2f2f2; /* لون خلفية الصف */
+}
+
+tr:nth-child(even) {
+  background-color: #ddd; /* تلوين متبادل للصفوف */
+}
+
+tr:hover {
+  background-color: #ccc; /* تأثير عند المرور */
+}
+```
+
+تنسيق القوائم داخل الجدول:
+
+```css
+ul, ol {
+  background-color: blueviolet;
+  list-style-type: armenian;
+  list-style-position: inside;
+}
+
+li {
+  background-color: blanchedalmond;
+}
+```
+
+تنسيق حدود متقدم:
+
+```css
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+```
+
+تأثيرات مرئية:
+
+```css
+td {
+  transition: background-color 0.3s;
+}
+
+td:hover {
+  background-color: #f5f5f5;
+}
+```
+
+نصائح مهمة لتنسيق الجداول:
+
+- استخدم `border-collapse: collapse` للحصول على حدود أنظف
+- استخدم `padding` لخلق مساحة داخل الخلايا
+- استخدم `text-align` و `vertical-align` لمحاذاة المحتوى
+- استخدم ألوان خلفية مختلفة للعناوين والبيانات
+- جرب `:hover` لإضافة تفاعل مع المستخدم
+- استخدم `nth-child` للتلوين المتناوب للصفوف
 
 ## التأثيرات البصرية (Hover, Focus, Checked)
 
@@ -1589,8 +2169,39 @@ ul {
 a:hover {
   color: red;
   text-decoration: none;
+  cursor: pointer; /* شكل المؤشر */
 }
 ```
+
+---
+
+### Active
+
+تطبيق تنسيق عند الضغط
+
+```css
+div:active {
+  background: green
+}
+```
+
+---
+
+### Empty
+
+تطبيق التنسيق على  أبناء ليس لها محتوى
+
+```html
+<div><p></p></div>
+```
+
+```css
+p:empty {
+  background: green
+}
+```
+
+---
 
 ### Visited
 
@@ -1602,6 +2213,20 @@ a:visited {
 }
 ```
 
+يجب أن يكون الرابط صالح
+
+---
+
+### Link
+
+تطبيق تنسيق على الروابط التي لم تتم زيارتها:
+
+```css
+a:link {
+  color: red;
+}
+```
+
 ---
 
 ### Focus
@@ -1610,10 +2235,158 @@ a:visited {
 
 ```css
 input:focus {
-  outline: none;
+  outline: 2px solid red;
   border: 2px solid blue;
 }
 ```
+
+- `outline`: حدود الملربع
+  - none
+  - 2px solid red
+- `outline-offset`: أزاحة الحدود
+
+---
+
+### Disabled
+
+تطبيق تنسيق في حالة `disabled`:
+
+```html
+<input disabled/>
+```
+
+```css
+input:disabled {
+  background: blue;
+}
+```
+
+يمكنك تطبيق تنسيقات على عنصر `<input>` في جميع حالاته باستخدام `pseudo-classes` المخصصة لكل حالة.
+
+إليك التفاصيل:
+
+---
+
+### حالات `<input>` المدعومة في CSS
+
+يمكنك تنسيق `<input>` في الحالات التالية (وأكثر):
+
+- الحالات الأساسية:
+
+| Pseudo-Class       | الوصف                                  | مثال CSS                     |
+|--------------------|---------------------------------------|-----------------------------|
+| `:enabled`         | عندما يكون `input` نشطًا (غير معطل). | `input:enabled { ... }`     |
+| `:disabled`        | عندما يكون `input` معطلًا.           | `input:disabled { ... }`    |
+| `:read-only`       | عندما يكون `input` للقراءة فقط.      | `input:read-only { ... }`   |
+| `:read-write`      | عندما يكون `input` قابلًا للكتابة.   | `input:read-write { ... }`  |
+
+- حالات التركيز (Focus) والتحديد:
+| Pseudo-Class       | الوصف                                  | مثال CSS                     |
+|--------------------|---------------------------------------|-----------------------------|
+| `:focus`           | عند التركيز على `input`.             | `input:focus { ... }`       |
+| `:checked`         | عند تحديد `radio` أو `checkbox`.     | `input:checked { ... }`     |
+| `:indeterminate`   | عندما يكون `checkbox` غير محدد.      | `input:indeterminate { ... }` |
+
+- حالات الصحة (Validation):
+
+| Pseudo-Class       | الوصف                                  | مثال CSS                     |
+|--------------------|---------------------------------------|-----------------------------|
+| `:valid`           | عندما تكون القيمة صالحة.             | `input:valid { ... }`       |
+| `:invalid`         | عندما تكون القيمة غير صالحة.         | `input:invalid { ... }`     |
+| `:required`        | عندما يكون `input` مطلوبًا.          | `input:required { ... }`    |
+| `:optional`        | عندما يكون `input` اختياريًا.        | `input:optional { ... }`    |
+
+- حالات خاصة:
+
+| Pseudo-Class       | الوصف                                  | مثال CSS                     |
+|--------------------|---------------------------------------|-----------------------------|
+| `:placeholder-shown` | عند عرض النص البديل (placeholder).  | `input:placeholder-shown { ... }` |
+| `:out-of-range`    | عندما تكون القيمة خارج النطاق.       | `input:out-of-range { ... }` |
+| `:in-range`        | عندما تكون القيمة ضمن النطاق.        | `input:in-range { ... }`    |
+
+---
+
+- مثال شامل لتنسيق `<input>` في حالات مختلفة:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* الحالة الأساسية */
+        input {
+            padding: 10px;
+            margin: 5px;
+        }
+
+        /* عند التركيز */
+        input:focus {
+            border: 2px solid blue;
+            background-color: #f0f8ff;
+        }
+
+        /* عند التعطيل */
+        input:disabled {
+            background-color: #eee;
+            cursor: not-allowed;
+        }
+
+        /* عند التحديد (لـ checkbox/radio) */
+        input:checked {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* عندما تكون القيمة غير صالحة */
+        input:invalid {
+            border: 2px solid red;
+        }
+
+        /* عند عرض النص البديل */
+        input:placeholder-shown {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" placeholder="اكتب شيئًا...">
+    <input type="text" disabled value="معطل">
+    <input type="checkbox" id="check">
+    <label for="check">موافق</label>
+    <input type="email" required placeholder="البريد الإلكتروني">
+</body>
+</html>
+```
+
+---
+
+هل يمكن تطبيق تنسيق في أي حالة؟
+
+- نعم! يمكنك تنسيق `<input>` في أي حالة من الحالات المذكورة أعلاه.  
+- بعض الحالات تتطلب نوعًا محددًا من `<input>`، مثل:
+  - `:checked` → يعمل فقط مع `radio` أو `checkbox`.
+  - `:in-range` → يعمل مع `number`, `date`, etc.
+
+---
+
+### ملاحظات مهمـة
+
+1. المتصفحات القديمة (مثل IE) قد لا تدعم بعض الحالات مثل `:placeholder-shown`.  
+2. الحالات الديناميكية (مثل `:valid`/`:invalid`) تتغير تلقائيًا بناءً على قيمة `input`.  
+3. يمكنك دمج الحالات باستخدام CSS:
+
+```css
+input:enabled:focus {
+    /* تنسيق عند التركيز على input نشط */
+}
+```
+
+---
+
+### المراجع المفيدة
+
+- [MDN: Pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)  
+- [w3schools: Input Pseudo-classes](https://www.w3schools.com/css/css_pseudo_classes.asp)
 
 ---
 
@@ -1676,9 +2449,108 @@ input:checked {
 
 ---
 
+### الفرق بين النقطتين `:` والأقواس المربعة `[]`
+
+- النقطتان `:` (Pseudo-class) → تختار حالات/ظروف العنصر
+- ما تفعله:
+  تختار العنصر بناءً على حالته الديناميكية أو وظيفته (مثل التفعيل، التركيز، الزيارة).  
+- خصائصها:  
+  - تعتمد على تفاعل المستخدم أو حالة المتصفح (مثل `:hover` عند تمرير المؤشر).  
+  - بعضها يتغير تلقائيًا (مثل `:valid` عند إدخال بيانات صحيحة).  
+- أمثلة شائعة:  
+
+  ```css
+  a:hover      /* عند تمرير المؤشر */
+  input:focus  /* عند النقر على حقل إدخال */
+  li:first-child /* أول عنصر في قائمة */
+  ```
+
+---
+
+- الأقواس المربعة `[]` (Attribute Selector) → تختار سمات/خصائص العنصر
+- ما تفعله:  
+  تختار العنصر بناءً على سماته (attributes) الثابتة في HTML (مثل `type`، `class`، `id`).  
+- خصائصها:  
+  - تعتمد على القيم المكتوبة في الكود (لا تتغير مع التفاعل).  
+  - يمكن استخدامها مع أي سمة (حتى المخصصة مثل `data-*`).  
+- أمثلة شائعة:
+
+```css
+input[type="text"]  /* جميع حقول النصوص */
+a[target="_blank"]  /* جميع الروابط التي تفتح في نافذة جديدة */
+[data-color="red"]  /* العناصر ذات السمة data-color="red" */
+```
+
+---
+
+- مقارنة عملية بين `:` و `[]`:
+
+| الميزة                  | النقطتان `:` (Pseudo-class) | الأقواس `[]` (Attribute Selector) |
+|-------------------------|----------------------------|-----------------------------------|
+| **التحديد**             | الحالات الديناميكية        | السمات الثابتة                   |
+| **مثال**               | `button:disabled`          | `button[disabled]`               |
+| **هل يتغير أثناء التشغيل؟** | نعم (مثل `:hover`)         | لا (ثابت除非 تعديل الـ HTML)     |
+| **يدعم التخصيص؟**       | محدود (لديه قائمة معينة)  | نعم (أي سمة في HTML)             |
+
+---
+
+متى تستخدم كلًا منهما؟
+
+- استخدم `:` عندما تريد:
+  - تنسيق عنصر عند التفاعل معه (مثل تغيير لون الزر عند الضغط).  
+  - التحديد بناءً على ترتيب أو علاقة العناصر (مثل `:nth-child(2)`).  
+
+- استخدم `[]` عندما تريد:  
+  - تنسيق عناصر **لها سمة محددة** (مثل كل حقول كلمات المرور `[type="password"]`).  
+  - التحديد بناءً على **قيمة مخصصة** (مثل `[lang="ar"]` للنصوص العربية).  
+
+---
+
+- مثال يوضح الفرق بوضوح:
+
+```html
+<style>
+  /* باستخدام : (حالة) */
+  input:focus {
+    border: 2px solid blue; /* عندما ينقر المستخدم على الحقل */
+  }
+
+  /* باستخدام [] (سمة) */
+  input[required] {
+    background: lightyellow; /* جميع الحقول المطلوبة */
+  }
+</style>
+
+<input type="text" required placeholder="حقل مطلوب">
+<input type="email" placeholder="حقل عادي">
+```
+
+---
+
+- تحذير مهم:
+  - يمكنك دمج الاثنين لتحقيق تنسيق دقيق جدًا:
+
+```css
+input[type="text"]:hover {
+  /* يؤثر فقط على حقول النصوص عند تمرير المؤشر! */
+  background: lightgreen;
+}
+```
+
+---
+
+الخلاصة:
+
+- `:` → للتفاعلات والحالات (مثل `:hover`, `:checked`).
+- `[]` → للسمات الثابتة (مثل `[type]`, `[href]`).
+
+---
+
 ## العناصر الزائفة (Pseudo-elements)
 
-العناصر الزائفة تسمح بتحديد أجزاء من المحتوى لتطبيق تنسيق خاص:
+العناصر الزائفة تسمح بتحديد أجزاء من المحتوى لتطبيق تنسيق خاص
+
+نضع `::` بدلا من `:` للتفريق بينها وبين `Pseudo-Class`
 
 ### ::first-letter
 
@@ -1716,6 +2588,13 @@ p::first-line {
 }
 ```
 
+يمكن تطبيقها على عنصر معين مثلا:
+
+```css
+p::selection {
+  background: yellow;
+}
+
 ---
 
 ### ::before و::after
@@ -1734,7 +2613,8 @@ h2::after {
 }
 ```
 
-يمكن استخدامها لإنشاء أشكال مثل الخطوط داخل الحاويات:
+- `conten`: يجب كتابتها حتى لو بدون محتوى
+- يمكن استخدامها لإنشاء أشكال مثل الخطوط داخل الحاويات:
 
 ```css
 .card {
@@ -1751,6 +2631,15 @@ h2::after {
   background: blue;
 }
 ```
+
+- لو المحتوى فارغ فيجب تحديد أبعاده ومكانه
+- `.card`: نستخدم معها `relative` حتى يتمكن العنصلر الزائف من وراثتها
+- لا نضع `position: relative` مباشرة على `::before` لأن:
+  - `::before` هو عنصر زائف (pseudo-element) ليس له وجود مستقل في DOM - إنه مجرد وهمي مرتبط بالعنصر الأصلي (.card في هذه الحالة).
+  - `position: relative` تحتاج إلى عنصر حقيقي في شجرة المستند لتؤثر عليه، بينما `::before`:
+    - لا يمكن أن يكون "أبًا" لعناصر أخرى
+    - لا يمكن أن يكون مرجعًا لعناصر أخرى
+    - وجوده مشروط بالعنصر الأصلي
 
 ---
 
@@ -1874,31 +2763,243 @@ white-space: normal
 - word-wrap:
   - break-word: الالتزام بالعرض (حتى لو كلمة واحدة) (بدون الالتزام بالمسافات والأسطر)
 
+### التحويلات (Transforms)
+
+تحوبل العنصر من مكان لإخر
+
+```css
+transform: translate(100px, -200px)
+```
+
+- `translate`: move(x, y)
+- لو أخذ قيمة واحدة ستكون قيمة `x`
+  - `transform: translate(100px)` = `transform: translate(100px, 0)`
+- `translateX`: قيمة `x`
+- `translateY`: قيمة `y`
+- `scale`: الحجم (الخلفية والمحتوى)
+  - تكبير (أكبر من 1)
+  - تصغير (بين 0 و 1)
+  - نكبير مع تقليب عمودي (أصغر من -1)
+  - تصغير مع تقليب عمودي (بين 0 و -1)
+  - لو أخذ قيمة واحدة ستكون قيمة `x`, `y`
+    - `transform: scale(5)` = `transform: scale(5, 5)`
+- `scaleX`, `scaleY`: حجم كل تتجاه
+  - لهم نفس الخواص
+  - القيمة السالبة مع `scaleX`: تقليب أفقي
+- `rotate`: الدوران
+  - `transform: rotate(80deg)`
+  - `transform: rotate(-60deg)` = `300deg`
+  - يأخذ قيمة واحدة فقط
+- `roteX`: دوران رأسي، `roteY`: دوران أفقي
+  - تختفي الخلفية عند (90deg, 270deg)
+  - القيم السالبة غير مؤثرة
+- `skew`: الانحراف
+  - `transform: skew(30deg, -310deg)` = `(-330deg, 50deg)`
+  - لو أخذ قيمة واحدة ستكون قيمة `x`
+  - `transform: skew(70deg)` = `transform: skew(70deg, 0deg)`
+- `skewX`: انحراف أفقي، `skewY`: انحراف رأسي
+  - تختفي الخلفية عند (90deg, 270deg)
+- `matrix`: إضافة 6 قيم في سطر واحد بدون وحدات وهي:
+  - `scaleX`
+  - `skewY`
+  - `skewX`
+  - `scaleY`
+  - `translateX`
+  - `translateY`
+  - القيم الافتراضية: `transform: matrix(1, 0, 0, 1, 0, 0)`
+  - `transform: matrix(1, 0, 0, 1, 100, 0)` = `transform: translate(100px)`
+
+#### الفرق بين `position` (مع `top` / `bottom` / `left` / `right`) وبين `transform: translate()`
+
+هو فرق **كبير** من حيث التأثير والسياق والنتائج. لنشرح كل واحدة، ثم نوضح الفرق بينهما بمثال واضح.
+
+---
+
+- أولًا: `position` + `bottom` / `right`
+
+تُستخدم مع أنواع التموضع مثل:
+
+- `relative`
+- `absolute`
+- `fixed`
+- `sticky`
+
+مثال:
+
+```css
+position: relative;
+bottom: 200px;
+right: 100px;
+```
+
+- **`relative`**: العنصر يتحرك **نسبة إلى موضعه الأصلي في التدفق العادي للصفحة**، ولكنه **ما يزال يحتفظ بمكانه** الأصلي من حيث حجز المساحة.
+- عند كتابة `bottom: 200px;` و `right: 100px;` فهذا يعني:
+
+  > "حرك العنصر لأعلى بمقدار 200px، ولليسار بمقدار 100px"
+
+لاحظ أن:
+
+- `bottom` يدفع العنصر **لأعلى**
+- `right` يدفع العنصر **لليسار**
+
+> لأن الاتجاه هو عكس الخاصية، وليس معها.
+
+---
+
+- ثانيًا: `transform: translate(x, y)`
+
+مثال:
+
+```css
+transform: translate(200px, 100px);
+```
+
+هذا يُحرك العنصر **بصريًا فقط** دون أن يُغيّر من تدفق العنصر أو من موضعه في تدفق الصفحة.
+
+- `translate(200px, 100px)` يعني:
+
+  > "انقل العنصر بصريًا **200px يمينًا** و**100px للأسفل**".
+
+- أهم الفروقات:
+
+| الخاصية                   | position + bottom/right      | transform: translate()       |
+| ------------------------- | ---------------------------- | ---------------------------- |
+| يؤثر على تدفق العنصر؟     | نعم (في حالات معينة)         | لا                           |
+| يحتفظ بمكانه الأصلي؟      | نعم (مع `relative`)          | نعم                          |
+| الاتجاه                   | عكس الخاصية (`bottom` يرفعه) | مع الاتجاه (y موجب = للأسفل) |
+| قابل للتأنيم (animation)? | أقل سلاسة                    | أكثر سلاسة وأداء أفضل        |
+| يتفاعل مع position الأب؟  | نعم                          | لا                           |
+
+---
+
+- مثال عملي لفهم الفرق:
+
+- HTML:
+
+```html
+<div class="box1">Position</div>
+<div class="box2">Transform</div>
+```
+
+- CSS:
+
+```css
+.box1, .box2 {
+  width: 100px;
+  height: 100px;
+  background: tomato;
+  margin: 20px;
+  color: white;
+  display: inline-block;
+  text-align: center;
+  line-height: 100px;
+}
+
+.box1 {
+  position: relative;
+  bottom: 50px;
+  right: 50px;
+}
+
+.box2 {
+  transform: translate(50px, -50px);
+}
+```
+
+- الملاحظة
+
+- `box1` ستتحرك لأعلى ويسار الصفحة، لكن المساحة التي كانت تشغلها ستبقى فارغة.
+- `box2` ستتحرك بنفس الاتجاه، لكن بدون التأثير على المساحة الأصلية أو العناصر المجاورة.
+
+---
+
+- متى أستخدم كل واحدة؟
+
+- استخدم **`transform: translate()`** عندما تريد تحريك العنصر **بدون التأثير على التخطيط** أو عند عمل **أنيميشن** سلس.
+- استخدم **`position`** عندما تحتاج إلى **تحديد مكان العنصر بدقة** بالنسبة للأب أو تريد عنصرًا يخرج عن تدفق الصفحة (مثلاً dropdown أو modal).
+
+### التحريكات (Translates)
+
+هو تطور لـ `transform: translate`
+
+```css
+translate: 200px 100px;
+```
+
+`transform: translate(200px)` = `translate: 200px 0px`
+
+### الأحجام (Scales)
+
+هو تطور لـ `transform: scale`
+
+```css
+scale: 2; /* x = 2, y = 2 */
+scale: -0.5 3; /* x = -0.5, y = 3 */
+```
+
+`transform: scale(2)` = `scale: 2 2`
+
+### الدوران (Rotate)
+
+هو تطور لـ `transform: rotate`
+
+```css
+rotate: 20deg;
+```
+
+`transform: rotate(70deg)` = `rotate: -290deg`
 
 ### الانتقالات (Transitions)
 
-تسمح بإنشاء حركة سلسة عند تغيير الخصائص:
+تسمح بإنشاء حركة سلسة عند تغيير الخصائص (التي نكتبها بعد `:`):
 
 ```css
 button {
   background-color: blue;
-  transition: background-color 0.3s ease;
+  color: blanchedalmond;
+  transition: 1s;
 }
 
 button:hover {
   background-color: darkblue;
+  color: red
 }
 ```
 
-خصائص الانتقال:
+يتغير لون الخلفية والمحتوى بعد ثانية من وضع المؤشر عليه
 
-- **property**: الخاصية المراد تحريكها.
-- **duration**: مدة الحركة.
-- **timing-function**: نوع المنحنى (ease, linear, ease-in-out).
-- **delay**: تأخير.
+`1s` = `1000ms`
+
+- `transition` تأخذ أربع خصائص:
+  - `property`: تحديد الخاصية (Default: `all`) (يمكن تحديد أكثر من خاصية بعد `,`)
+    - `transition: background-color 3000ms, color 1s`
+  - `duration`: المدة (Default: `0s`)
+  - `timing-function`: شكل الحركة
+    - `ease`: slow → fast → slow (Default)
+    - `ease-in`: slow → normal speed
+    - `ease-out`: normal speed → slow
+    - `ease-in-out`: slow → normal speed → slow
+    - `linear`: normal speed
+    - `steps(n, direction)`: تتحرك خلال عدد خطوات
+      - `number_of_steps`: عدد القفزات أو الإطارات.
+      - `irection`: إما `start` أو `end` (Default)، وتحدد متى تحدث القفزة.
+      - `sters(1)` = `sters(1, end)` = `step-end`
+      - `sters(1, start)` = `step-start`
+  - `delay`: تأخير التحريك (Default: 0s)
+    - `background-color 5s steps(1, start) 8s`
+      - يبدأ التغيير بعد 8 ثواني
+      - يظل العنصر في وضع الانتقال لمدة 5 ثواني دون تغيير لأنه قفز بالبداية
+
+يمكن تحديد كل خاصية:
+
+```css
+transition-property: width, hight;
+transition-duration: 3s, 1s;
+transition-timing-function: ease;
+transition-delay: 2s;
+```
 
 ---
-
 
 ### التحريكات (Animations)
 
@@ -1919,13 +3020,62 @@ button:hover {
 }
 ```
 
+`animation`: هي اختصار لخصائصها
+
+- `from`: نقطة البداية
+- `to`: نقطة النهاية
+
+يمكن تحديد النقاط من خلال النسبة المئوية مثلا:
+
+```css
+0% {
+  width: 200px
+}
+50% {
+  width: 250px
+}
+100% {
+  width: 300px
+}
+```
+
 خصائص:
 
 - **name**: اسم الحركة.
 - **duration**: مدتها.
-- **iteration-count**: عدد التكرارات.
-- **direction**: عكس/بدون عكس (alternate).
 - **timing-function**: منحنى الحركة.
+  - `ease`: الافتراضية
+  - `linear`: ثابتة
+  - نفيس القيم الخاصة بـ `transition-timing-function`
+- **delay**: تأخير
+- **iteration-count**: عدد التكرارات.
+  - `infinite`: لانهائي
+- **direction**: اتجاهها
+  - `alternate`: ارتداد
+  - `reverse`: عكس
+  - `normal`: طبيعي (افتراضي)
+  - `alternate-reverse`: عكس مع ارتداد
+- **fill-mode**: شكل الحركة بالبداية والنهاية
+  - `none`: يبدأ وينتهي عند الوضع الأصلي (الافتراضي)
+  - `forwards`: ينتهي عند آخر وضع `100%`
+  - `backwards`: يبدأ عند أول وضع
+  - `both`: يبدأ عند أول وضع وينتهي عند آخر وضع
+- **play-state**: حالة التشغيل
+  - `runnig`: تشغل (افتراضي)
+  - `paused`: إيقاف (يمكن استخدامها مع `hover`)
+
+يمكن استخدام كل خاصية لوحدها:
+
+```css
+animation-name: slide;
+animation-duration: 4s;
+animation-timing-function: linear;
+animation-delay: 2s;
+animation-iteration-count: infinite;
+animation-direction: reverse;
+animation-fill-mode: forwards;
+animation-play-state: paused;
+```
 
 ---
 
