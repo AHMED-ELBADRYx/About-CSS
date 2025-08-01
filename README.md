@@ -970,30 +970,6 @@ background-position: 50% 50%;
 background-position: 30px 10px;
 ```
 
-
-
-
-
-
-
-
-
-
-
-التكبير من خلال (`CTRL` + `+`) يتم في الموضع الذي يحدده `background-position`
-
-
-
-
-
-
-
-
-
-
-
-
-
 - ثبات الخلفية أثناء التمرير:
 
 ```css
@@ -2656,6 +2632,8 @@ h2::after {
   align-items: center;
 }
 ```
+
+يمكن معرفة كل شيء عن من [هنا](https://nouvil.net/flex-box-game/)
 
 خصائص رئيسية:
 
