@@ -79,6 +79,9 @@ CSS هي اختصار لـ Cascading Style Sheets، وهي اللغة المسؤ
     - [::selection](#selection)
   - [تخطيط الصفحة (Flexbox, Grid)](#تخطيط-الصفحة-flexbox-grid)
     - [Flexbox](#flexbox)
+      - [عناصر الأب](#عناصر-الأب)
+        - [الفرق بين `align-items`, `align-content`](#الفرق-بين-align-items-align-content)
+      - [عناصر الابن](#عناصر-الابن)
     - [Grid](#grid)
   - [الاستجابة للشاشات (Media Queries)](#الاستجابة-للشاشات-media-queries)
   - [مفاهيم متقدمة](#مفاهيم-متقدمة)
@@ -2626,7 +2629,7 @@ h2::after {
 طريقة حديثة لتنظيم العناصر في اتجاه واحد (صف أو عمود):
 
 ```css
-.container {
+.father {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2635,11 +2638,118 @@ h2::after {
 
 يمكن معرفة كل شيء عن من [هنا](https://nouvil.net/flex-box-game/)
 
+#### عناصر الأب
+
 خصائص رئيسية:
 
-- **justify-content**: توزيع العناصر أفقياً.
-- **align-items**: محاذاة عمودية.
-- **flex-direction**: row (افتراضي), column.
+- **`display`**:
+  - `flex`: عناصر أفقية وعرض الخلفية `100%` من عرض الأب
+  - `inline-flex`: عناصر أفقية وعرض الخلفية `100%` من عرض المحتوى
+
+- **`flex-direction`**: اتجاه
+  - `row`: صف (افتراضي: اتجاه قيمة `dir`: ltr (افتراضي)، rtl)
+  - `row-reverse`: عرض معكوس
+  - `column`: عمود
+  - `column-reverse`: عمود معكوس
+
+- **`flex-wrap`**: التفاف رأسي (في حالة `flex-direction: row`)
+  - `nowrap`: لا التلفاف (افتراضي)
+  - `wrap`: التفاف لللأسفل إن تجاوز المحتوى عرض الأب
+  - `wrap-reverse`: التفاف لللأعلى إن تجاوز المحتوى عرض الأب
+
+- **`flex-flow`**: تجمع خاصية `flex-direction` وخاصية `flex-wrap`
+  - `flex-flow: row nowrap`
+
+- **`justify-content`**: توزيع العناصر
+  - `flex-start`: بداية الاتجاه (افتراضي)
+  - `flex-end`: نهاية الاتجاه
+  - كلاهما يختلف تأثيرهما حسب قيمة `flex-direction`
+    - `row`: حسب قيمة `dir`:
+      - `ltr` (افتراضي):
+        - `flex-start`: يسار
+        - `flex-end`: يمين
+      - `rtl`:
+        - `flex-start`: يمين
+        - `flex-end`: يسار
+    - `column`:
+      - `flex-start`: أعلى
+      - `flex-end`: أسفل
+  - `left`, `right`: `flex-direction: row`
+  - `center`: `flex-direction: row`, `flex-direction: column`
+  - `space-between`: مسافات بين العناصر (لا يشمل الأطراف)
+  - `space-around`: مسافات حول كل عنصر(يشمل الأطراف)
+  - `space-evenly`: مسافات مشتركة حول العناصر (يشمل الأطراف)
+
+- **`gap`**: مسافة بين العناصر
+  - `gap: 200px`
+  - تختلف قيمتها حسب `flex-direction`:
+    - `row`: مسافة طولية
+    - `column`: مسافة عرضية
+
+- **`align-items`, `align-content`**: محاذاة (عكس `justify-content`)
+  - `stretch`: تمدد (افتراضي)
+    - تختلف تأثيرها حسب قيمة `flex-direction`:
+      - `row`: تمدد طولي مساوي للأب
+      - `column`: تمدد عرضي مساوي للأب
+        - حسب قيمة `dir`
+          - `rtl`: من اليمين
+          - `ltr`: من اليسار
+  - `flex-start`, `flex-end`:
+    - كلاهما يختلف تأثيرهما حسب قيمة `flex-direction`:
+      - `row`: `flex-start`: أعلى، `flex-end`: أسفل
+      - `column`: `flex-start`: يسار ، `flex-end`: يمين
+    - ملحوظة: `flex-wrap: wrap-reverse` تقوم بعكس اتجاهات  `flex-start`, `flex-end`مع `column`, `row`
+  - `center`: `flex-direction: row`, `flex-direction: column`
+
+##### الفرق بين `align-items`, `align-content`
+
+- `align-content`:
+  - تعمل فقط بحالة الالتفاف: `wrap, wrap-reserve`
+  - لا تحدث مسافات بينها وبين العناصر الملتفة
+  - إضافة `space-between`, `space-align`: تأثيرها يكون بينها وبين العناصر الملتفة
+
+#### عناصر الابن
+
+الخصائص:
+
+- **`align-self`**: محاذاة
+  - مثل `align-items` في الأب
+
+- **`order`**: ترتيب
+  - `0`: افتراضي
+  - القيم المتساوية ترتيبها افتراضي
+  - كلما زادت القيمة ابتعد العنصر
+  - كلما قلت القيمة (حتى تحت الصفر) سبق العنصر
+
+- **`flex-grow`**: تمدد
+  - تتوسع للمساحة المتبقية من أبعاد الأب
+  - `0`: افتراضي
+  - أكبر قيمة يأخذ أكبر مساحة مثلا:
+    - المساحة المتبقية -> `160px`
+    - `item1`:
+      - `flex-grow: 1` -> `20px`
+    - `item2`:
+      - `flex-grow: 2` -> `40px`
+    - `item3`:
+      - `flex-grow: 2` -> `40px`
+    - `item4`:
+      - `flex-grow: 3` -> `60px`
+  - القيم السالبة غير صالحة
+
+- **`flex-shrink`**: انكماش
+  - `1`: افتراضي
+  - `0`: تعطيل
+  - كلما زادت القيمة كانت لعنصره الأولوية للانكماش
+  - القيم السالبة غير صالحة
+
+- **`flex-basis`**: التحكم بالأبعاد
+  - حسب قيمة `flex-direction`:
+    - `row`: `width`
+    - `column`: `height`
+
+- **`flex`**: اختصار الثلاث قيم:
+  - `flex-grow`, `flex-shrink`, `flex-basis`:
+    - `flex: 0 1 100px`
 
 ---
 
