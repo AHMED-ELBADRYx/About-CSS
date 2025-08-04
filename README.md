@@ -84,6 +84,9 @@ CSS هي اختصار لـ Cascading Style Sheets، وهي اللغة المسؤ
       - [عناصر الابن](#عناصر-الابن)
     - [Grid](#grid)
       - [عنـاصر الأب](#عنـاصر-الأب)
+      - [عناصر الابـن](#عناصر-الابـن)
+      - [مثال لعمل شبكة باستخدام `grid-column` و `grid-row`](#مثال-لعمل-شبكة-باستخدام-grid-column-و-grid-row)
+      - [مثال لعمل شبكة باستخدام `grid-area`](#مثال-لعمل-شبكة-باستخدام-grid-area)
   - [الاستجابة للشاشات (Media Queries)](#الاستجابة-للشاشات-media-queries)
   - [مفاهيم متقدمة](#مفاهيم-متقدمة)
     - [التغليف (Wrapping)](#التغليف-wrapping)
@@ -2776,11 +2779,13 @@ h2::after {
 
 - **`grid-template-columns` / `grid-template-rows`**: تقسيم الشبكة (لا يتجاوز عدد الأبناء بحالة الصفوف).
   - `fr`: تقسيم بالتساوي
-  - يمكن استخدام أي وحدة قياس مثل (`%` `px` `auto`...) كما يمكن دمجها
-  - لاستخدام `fr` و `auto` بخاصية `grid-template-rows` يجب تحديد قيمة `height`
+    - يمكن استخدام أي وحدة قياس مثل (`%` `px` `auto`...) كما يمكن دمجها
+    - لاستخدام `fr` و `auto` بخاصية `grid-template-rows` يجب تحديد قيمة `height`
   - `repeat`: يأخذ قيمتين:
     1. عدد التقسيمات
     2. قيمة كل واحدة
+    - يمكن جعل عدد القسمات تلقائي حسب عرض النافذة (في حالة عدم تحديد العرض وعدم استخدام `fr` و `auto` و `%` وقيمة أكبر أو أدني للعرض من النافذة) مثلا:
+      - `grid-template-columns: repeat(auto-fill, 100px)`
   - `minmax()`: أدنى وأقصى بعد للعنصر الواحد (على حسب خاصية `grid-template-columns` أو `grid-template-rows`)
     - يأخذ قيمتين:
       1. أدنى بعد
@@ -2801,6 +2806,15 @@ h2::after {
     - `grid-template-columns` الثالثة: القيمة المتبقية للعنصر الأول هي `100` (أدنى قيمة) فأخذها
     - `grid-template-columns` الرابعة: القيمة المتبقية للعنصر الأول هي `50` لكن أدنى قيمة له هي `100` لذا سيأخذ أدنى قيمة والعرض المتبقي يخرج عن الأب
 
+    - لو لم تحدد قيمة لـ `height` فالقيمة الإفتراضية هي طول المحتوى
+    - لو كان المحتوى أكبر من طول العنصر (بوحدات غير `fr`, `auto`) يتم قصه
+    - لو كان المحتوى أكبر من طول الأب (إن تم تحديده) سيخرج عنه
+    - لو كان المحتوى أصغر من أقصي طول سيأخذ الجزء المتبقي
+    - ففي حالة عدم تحديد طول الأب بدلا من تحديد قيمة لأقصى طول يسبب في قص الباقي من المحتوى إن كان المحتوى كبير أو أخذ الجزء المتبقي إن كان المحتوى صغير نجعل أقصى قيمة هي `auto` مثلا:
+      - `grid-template-rows: minmax(100px, auto)`
+    - لتطبيق ذلك على تحكم النافذة بعرض القيم بحيث لا تترك مساحة فارغة:
+      - `grid-template-columns: repeat(auto-fill, minmax(100px, auto))` أو `(100px, fr)`
+
 الفرق بين `fr`, `auto`
 
 | المعيار | `fr` | `auto` |
@@ -2811,6 +2825,196 @@ h2::after {
 | **أفضل استخدام** | توزيع المساحات | العناصر ذات المحتوى المتغير |
 
 - **`gap`**: المسافة بين العناصر.
+  - لو قيمة: بين الصفوف والأعمدة
+  - لو قيمتين: الأولى بين الصفوف والثانية بين الأعمدة
+
+- **`row-gap`**: المسافة بين الصفوف.
+
+- **`column-gap`**: المسافة بين الأعمدة.
+
+- **`justify-content`**: توزيع العناصر (عرضيا فقط)
+  - لا يمكن استخدامها مع `fr` لأنها أصلا تملأ العرض كله
+  - يمكن استخدامها مع `auto` لأنها تملأ المحتوى
+  - القيم:
+    - `center`: بالمنتصف
+    - `start`: بالبداية
+    - `end`: بالنهاية
+    - `space-between`: مسافات بين الأعمدة
+    - `space-around`: مسافات حول الأعمدة
+    - `space-evenly`: مسافات متساوية
+
+- ***`align-content`**: توزيع العناصر (طوليا فقط)
+  - يجب تعيين قيمة للارتفاع
+  - قيمها نفس قيم `justify-content`
+
+#### عناصر الابـن
+
+- **`grid-column-start`**: بداية عمود الشبكة
+  - `grid-column-start: 2`: يبدأ من ثاني شبكة
+
+- **`grid-column-end`**: نهاية عمود الشبكة
+  - `grid-column-end: 4`: ينتهي عند الشبكة 4
+
+- **`grid-column`**: يأخذ قيمتين (البداية والنهاية)
+  - `grid-column: 1/5`: من الشبكة 1 إلى 5
+  - القيم السالبة تبدأ بآخر قيمة من نفس الصف
+    - `grid-column: 1/-1`: من الشبكة الأولى إلى الأخيرة
+    - `grid-column: 1/-2`: من الشبكة الأولى إلى ما قبل الأخيرة (وهكذا)
+  - أن لم يكن هناك عرض محدد وتجاوزت آخر قيمة عدد العناصر ستكمل على نفس عرضها
+  - إن تجاوزت آخر قيمة العرض المحدد ستخرج منه
+
+- **`grid-row-start`**: بداية صف الشبكة
+  - `grid-row-start: 2`: يبدأ من ثاني شبكة
+
+- **`grid-row-end`**: نهاية صف الشبكة
+  - `grid-row-end: 4`: ينتهي عند الشبكة 4
+
+- **`grid-row`**: يأخذ قيمتين (البداية والنهاية)
+  - `grid-row: 1/5`: من الشبكة 1 إلى 5
+  - لا يقبل القيم السالبة
+  - أن لم يكن هناك طول محدد وتجاوزت آخر قيمة عدد العناصر ستكمل على نفس طولها
+  - إن تجاوزت آخر قيمة الطول المحدد ستخرج منه
+
+---
+
+- يوجد طريقتان لعمل الشبكة:
+  1. باستخدام `grid-column` و `grid-row`
+  2. بتسمية العناصر باستخدام `grid-area`
+
+---
+
+#### مثال لعمل شبكة باستخدام `grid-column` و `grid-row`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+        padding: 0;
+      }
+      .father {
+        background-color: burlywood;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 100px);
+        gap: 15px;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        max-width: 900px;
+        margin: 40px auto;
+      }
+      .father > * {
+        background-color: cornflowerblue;
+        color: white;
+        font-size: 1.3em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        border: 2px solid #fff;
+        transition: transform 0.2s;
+      }
+      .father > *:hover {
+        transform: scale(1.05);
+        background-color: royalblue;
+      }
+      header, footer {
+        grid-column: 1/-1;
+        font-weight: bold;
+        letter-spacing: 2px;
+      }
+      nav, main, aside {
+        grid-row: 2/4;
+      }
+      nav { grid-column: 1; }
+      main { grid-column: 2; }
+      aside { grid-column: 3; }
+    </style>
+  </head>
+  <body dir="ltr">
+    <div class="father">
+      <header>Header</header>
+      <nav>Nav</nav>
+      <main>Main</main>
+      <aside>Sidebar</aside>
+      <footer>Footer</footer>
+    </div>
+```
+
+---
+
+#### مثال لعمل شبكة باستخدام `grid-area`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+        padding: 0;
+      }
+      .father {
+        background-color: burlywood;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 100px);
+        gap: 15px;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        max-width: 900px;
+        margin: 40px auto;
+        grid-template-areas:
+          "header header header"
+          "nav main aside"
+          "nav main aside"
+          "footer footer footer";
+      }
+      .father > * {
+        background-color: cornflowerblue;
+        color: white;
+        font-size: 1.3em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        border: 2px solid #fff;
+        transition: transform 0.2s;
+      }
+      .father > *:hover {
+        transform: scale(1.05);
+        background-color: royalblue;
+      }
+      header   { grid-area: header; font-weight: bold; letter-spacing: 2px; }
+      nav      { grid-area: nav; }
+      main     { grid-area: main; }
+      aside    { grid-area: aside; }
+      footer   { grid-area: footer; font-weight: bold; letter-spacing: 2px; }
+    </style>
+  </head>
+  <body dir="ltr">
+    <div class="father">
+      <header>Header</header>
+      <nav>Nav</nav>
+      <main>Main</main>
+      <aside>Sidebar</aside>
+      <footer>Footer</footer>
+    </div>
+```
+
+- `grid-template-areas`: ترتب العناصر من خلال قيمة `grid-area`
+- لترك مربع فارغ نضع مكانه `.` مثلا:
+  - `"nav . aside"`
 
 ---
 
@@ -2832,6 +3036,10 @@ h2::after {
 }
 ```
 
+- تنسيق `container` هذا يعمل فقط مع شاشات عرضها أقل من 600px
+- `screen`: تطبيق التنسيق على الشاشة
+- `print`: مكان `screen` لتطبيق التنسيق على الطباعة من خلال `CTRL + P`
+
 ✅ يمكن تحديد حد أدنى وأقصى:
 
 ```css
@@ -2848,6 +3056,8 @@ h2::after {
 
 - **min-width** يجب أن تكون أولاً.
 - Media Queries مهمة لجعل المواقع متجاوبة على الهواتف والأجهزة اللوحية.
+- لمعرقة أحجام الشاشات:
+  - في المتصفح: `كليك يمين` → `Inspact` → `Ctrl + Shift + M` → `Dimensions`
 
 ---
 
